@@ -15,7 +15,7 @@ const Form = () => {
     const transferToActualAddress = async () => {
       try {
         if (encodedTmpSecretKey == "") {
-            throw Error("Can't get temp key")
+            throw Error("Can't get temp key from url")
         }
         const tmpPrivateKey = base64url.decode(encodedTmpSecretKey)
         const tmpAccount = web3.eth.accounts.wallet.add(tmpPrivateKey)[0];
@@ -37,6 +37,7 @@ const Form = () => {
         router.push("/result")
       } catch (e) {
         console.error(e);
+        alert(e)
       }
     };
     const handleChange = (
@@ -62,7 +63,6 @@ const Form = () => {
   };
 
 export default function Receive() {
-    
     return (
       <main className="flex min-h-screen flex-col items-center justify-between p-24">
         <div></div>
@@ -76,4 +76,3 @@ export default function Receive() {
       </main>
     );
   }
-  
