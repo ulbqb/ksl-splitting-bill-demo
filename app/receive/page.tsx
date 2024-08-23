@@ -7,17 +7,17 @@ import base64url from "base64url";
 const Form = () => {
     const [actualAddress, setActualAddress] = useState("");
     const searchParams = useSearchParams();
-    const encodedTmpSecretKey = searchParams.get("k") || "";
+    const encodedTmpPrivateKey = searchParams.get("k") || "";
     const web3 = new Web3("https://public-en-baobab.klaytn.net"); //https://docs.klaytn.foundation/docs/build/tutorials/connecting-metamask/#connect-to-klaytn-baobab-network-testnet-
     const router = useRouter()
  
 
     const transferToActualAddress = async () => {
       try {
-        if (encodedTmpSecretKey == "") {
+        if (encodedTmpPrivateKey == "") {
             throw Error("Can't get temp key from url")
         }
-        const tmpPrivateKey = base64url.decode(encodedTmpSecretKey)
+        const tmpPrivateKey = base64url.decode(encodedTmpPrivateKey)
         const tmpAccount = web3.eth.accounts.wallet.add(tmpPrivateKey)[0];
         const tmpAccountBalance = await web3.eth.getBalance(tmpAccount.address)
 
