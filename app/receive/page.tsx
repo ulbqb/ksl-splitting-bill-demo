@@ -34,7 +34,7 @@ const Form = () => {
             gas: gasLimit,
             gasPrice: gasPrice
         });
-        router.push("/result")
+        router.push("/success")
       } catch (e) {
         console.error(e);
         alert(e)
