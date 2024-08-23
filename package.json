@@ -13,6 +13,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "base64url": "^3.0.1",
     "next": "14.2.6",
     "react": "^18",
     "react-dom": "^18",
