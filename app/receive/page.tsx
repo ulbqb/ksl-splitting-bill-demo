@@ -32,7 +32,7 @@ const Form = () => {
         gas: gasLimit,
         gasPrice: gasPrice,
       });
-      router.push("/success");
+      router.push(`/success?address=${actualAddress}`);
     } catch (e) {
       console.error(e);
       alert(e);
