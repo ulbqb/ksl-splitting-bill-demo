@@ -23,12 +23,12 @@ const Form = () => {
       // calculate gas cost & max remittance value
       const gasPrice = await web3.eth.getGasPrice();
       const gasLimit = BigInt(21000); // https://docs.klaytn.foundation/docs/learn/transaction-fees/intrinsic-gas/#txtypedgas-
-      const maxRemittanceValue = tmpAccountBalance - BigInt(1000000000000000); // WORK-AROUND: see https://github.com/ulbqb/ksl-splitting-bill-demo/pull/4
+      const remittanceValue = tmpAccountBalance - BigInt(1000000000000000); // WORK-AROUND: see https://github.com/ulbqb/ksl-splitting-bill-demo/pull/4
 
       await web3.eth.sendTransaction({
         from: tmpAccount.address,
         to: actualAddress,
-        value: maxRemittanceValue,
+        value: remittanceValue,
         gas: gasLimit,
         gasPrice: gasPrice,
       });
