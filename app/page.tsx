@@ -33,6 +33,11 @@ const Form = (props: PrepareProps) => {
   const searchParams = useSearchParams();
   const amount = searchParams.get("amount") || "0";
   props.setAmount(amount);
+
+  // WORK-AROUND: see https://github.com/ulbqb/ksl-splitting-bill-demo/pull/4
+  const delegatedFee = 0.001;
+  const plusFee = `${+amount + delegatedFee}`;
+
   const web3 = new Web3();
   const prepareShareLink = async () => {
     try {
@@ -51,7 +56,7 @@ const Form = (props: PrepareProps) => {
           },
           transaction: {
             to: account.address,
-            amount: amount,
+            amount: plusFee,
           },
         }),
       });
