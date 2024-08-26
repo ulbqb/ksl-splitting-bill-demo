@@ -3,18 +3,18 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 0, 0, 0;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
   }
-}
+} */
 
 body {
   color: rgb(var(--foreground-rgb));
@@ -30,4 +30,20 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.bg-kaia {
+  background-color: #bff009;
+}
+
+.color-kaia {
+  color: #bff009;
+}
+
+.bg-kakao {
+  background-color: #fee500;
+}
+
+.bg-line {
+  background-color: #06c755;
 }
