@@ -49,18 +49,19 @@ const Form = () => {
       <form>
         <input
           type="text"
-          className="text-black"
+          className="block py-2.5 px-0 w-64 text-bg text-white bg-transparent border-0 border-b-2 border-gray-500  appearance-none focus:outline-none focus:ring-0 focus:border-white"
           name="address"
+          placeholder="0x01234..."
           value={actualAddress}
           onChange={handleChange}
         />
       </form>
       <button
         type="button"
-        className="bg-indigo-600 text-white text-bg leading-6 font-medium py-2 px-3 rounded-lg"
+        className="w-64 h-14 bg-kaia text-black text-bg leading-6 font-medium py-2 px-3 rounded-lg"
         onClick={transferToActualAddress}
       >
-        Get token
+        Receive KAIA
       </button>
     </>
   );
@@ -71,7 +72,7 @@ export default function Receive() {
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div></div>
       <div></div>
-      <h1 className="text-2xl font-bold">Input your address</h1>
+      <h1 className="text-2xl font-bold">Input Your Address</h1>
       <Suspense>
         <Form />
       </Suspense>
