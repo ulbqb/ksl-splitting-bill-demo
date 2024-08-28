@@ -90,7 +90,7 @@ const Form = (props: PrepareProps) => {
             fill="black"
           />
         </svg>
-        Prepare with Kaia Wallet
+        Deposit with Kaia Wallet
       </button>
     </>
   );
