@@ -6,8 +6,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "KSL Splitting Bill Demo",
-  description: "KSL Splitting Bill Demo",
+  title: "KSL Demo - Bill Splitter",
+  description: "KSL Demo - Bill Splitter",
 };
 
 export default function RootLayout({
