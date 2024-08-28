@@ -32,10 +32,18 @@ body {
   color: #bff009;
 }
 
+.fill-kaia {
+  fill: #bff009;
+}
+
 .bg-kakao {
   background-color: #fee500;
 }
 
 .bg-line {
   background-color: #06c755;
+}
+
+.bg-tg {
+  background-color: #24a1de;
 }
