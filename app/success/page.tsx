@@ -50,7 +50,7 @@ const Form = () => {
         <br></br>
         <h1 className="text-3xl font-bold">{amount} KAIA</h1>
       </div>
-      <div>
+      <div className="flex flex-col justify-between">
         <button
           type="button"
           className="w-64 h-14 bg-line text-white text-bg leading-6 font-medium py-2 px-3 rounded-lg inline-flex items-center mb-5"
@@ -124,7 +124,7 @@ const Form = () => {
 
 export default function Success() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="flex min-h-screen flex-col items-center justify-between p-12">
       <div></div>
       <div></div>
       <h1 className="text-2xl font-bold">Success</h1>

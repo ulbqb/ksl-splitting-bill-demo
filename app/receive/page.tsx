@@ -54,7 +54,7 @@ const Form = (props: FromProps) => {
       <form>
         <input
           type="text"
-          className="block py-2.5 px-0 w-64 text-bg text-white bg-transparent border-0 border-b-2 border-gray-500  appearance-none focus:outline-none focus:ring-0 focus:border-white"
+          className="block py-2.5 px-0 w-64 text-bg text-white bg-transparent border-0 border-b-2 border-gray-500 appearance-none focus:outline-none focus:ring-0 focus:border-white"
           name="address"
           placeholder="0x01234..."
           value={actualAddress}
@@ -100,7 +100,7 @@ export default function Receive() {
           </div>
         </div>
       )}
-      <main className="flex min-h-screen flex-col items-center justify-between p-24">
+      <main className="flex min-h-screen flex-col items-center justify-between p-12">
         <div></div>
         <div></div>
         <h1 className="text-2xl font-bold">Input Your Address</h1>
