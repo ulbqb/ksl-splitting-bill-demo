@@ -108,7 +108,7 @@ interface GeneratedProps {
 function Generated(props: GeneratedProps) {
   const shareLink = `${window.location.protocol}//${
     window.location.host
-  }/receive/?k=${base64url.encode(props.privateKey)}`;
+  }/receive#$${base64url.encode(props.privateKey)}`;
   const sendToKakaoFriend = () => {
     const content = {
       objectType: "text",

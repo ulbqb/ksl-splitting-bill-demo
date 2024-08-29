@@ -1,23 +1,21 @@
 "use client";
 import { Web3 } from "web3";
-import { useSearchParams, useRouter } from "next/navigation";
-import { Suspense, Dispatch, SetStateAction, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import base64url from "base64url";
 
-interface FromProps {
-  setIsLoading: Dispatch<SetStateAction<boolean>>;
-}
-
-const Form = (props: FromProps) => {
-  const [actualAddress, setActualAddress] = useState("");
-  const searchParams = useSearchParams();
-  const encodedTmpPrivateKey = searchParams.get("k") || "";
-  const web3 = new Web3("https://public-en-baobab.klaytn.net"); //https://docs.klaytn.foundation/docs/build/tutorials/connecting-metamask/#connect-to-klaytn-baobab-network-testnet-
+export default function Receive() {
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
+  const [actualAddress, setActualAddress] = useState("");
 
   const transferToActualAddress = async () => {
-    props.setIsLoading(true);
     try {
+      setIsLoading(true);
+
+      const web3 = new Web3("https://public-en-baobab.klaytn.net"); //https://docs.klaytn.foundation/docs/build/tutorials/connecting-metamask/#connect-to-klaytn-baobab-network-testnet-
+      const hashValue = window.location.hash;
+      const encodedTmpPrivateKey = hashValue.substring(2);
       if (encodedTmpPrivateKey == "") {
         throw Error("Can't get temp key from url");
       }
@@ -43,37 +41,13 @@ const Form = (props: FromProps) => {
       alert(e);
     }
   };
+
   const handleChange = (
     e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
   ) => {
     setActualAddress(e.target.value);
   };
 
-  return (
-    <>
-      <form>
-        <input
-          type="text"
-          className="block py-2.5 px-0 w-64 text-bg text-white bg-transparent border-0 border-b-2 border-gray-500 appearance-none focus:outline-none focus:ring-0 focus:border-white"
-          name="address"
-          placeholder="0x01234..."
-          value={actualAddress}
-          onChange={handleChange}
-        />
-      </form>
-      <button
-        type="button"
-        className="w-64 h-14 bg-kaia text-black text-bg leading-6 font-medium py-2 px-3 rounded-lg"
-        onClick={transferToActualAddress}
-      >
-        Receive KAIA
-      </button>
-    </>
-  );
-};
-
-export default function Receive() {
-  const [isLoading, setIsLoading] = useState(false);
   return (
     <>
       {isLoading && (
@@ -104,9 +78,21 @@ export default function Receive() {
         <div></div>
         <div></div>
         <h1 className="text-2xl font-bold">Input Your Address</h1>
-        <Suspense>
-          <Form setIsLoading={setIsLoading} />
-        </Suspense>
+        <input
+          type="text"
+          className="block py-2.5 px-0 w-64 text-bg text-white bg-transparent border-0 border-b-2 border-gray-500 appearance-none focus:outline-none focus:ring-0 focus:border-white"
+          name="address"
+          placeholder="0x01234..."
+          value={actualAddress}
+          onChange={handleChange}
+        />
+        <button
+          type="button"
+          className="w-64 h-14 bg-kaia text-black text-bg leading-6 font-medium py-2 px-3 rounded-lg"
+          onClick={transferToActualAddress}
+        >
+          Receive KAIA
+        </button>
         <div></div>
         <div></div>
       </main>
