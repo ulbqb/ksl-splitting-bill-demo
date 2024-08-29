@@ -1,6 +1,6 @@
 "use client";
 import { Web3 } from "web3";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { Suspense, Dispatch, SetStateAction, useState } from "react";
 import base64url from "base64url";
 
@@ -10,14 +10,16 @@ interface FromProps {
 
 const Form = (props: FromProps) => {
   const [actualAddress, setActualAddress] = useState("");
-  const searchParams = useSearchParams();
-  const encodedTmpPrivateKey = searchParams.get("k") || "";
-  const web3 = new Web3("https://public-en-baobab.klaytn.net"); //https://docs.klaytn.foundation/docs/build/tutorials/connecting-metamask/#connect-to-klaytn-baobab-network-testnet-
-  const router = useRouter();
 
   const transferToActualAddress = async () => {
-    props.setIsLoading(true);
     try {
+      props.setIsLoading(true);
+
+      const web3 = new Web3("https://public-en-baobab.klaytn.net"); //https://docs.klaytn.foundation/docs/build/tutorials/connecting-metamask/#connect-to-klaytn-baobab-network-testnet-
+      const router = useRouter();
+
+      const hashValue = window.location.hash;
+      const encodedTmpPrivateKey = hashValue.substring(2);
       if (encodedTmpPrivateKey == "") {
         throw Error("Can't get temp key from url");
       }
