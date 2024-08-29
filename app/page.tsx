@@ -130,13 +130,13 @@ function Generated(props: GeneratedProps) {
   };
   const sendToLINEFriend = () => {
     const encodedMsg = encodeURIComponent(
-      `I sent ${props.amount} KAIA.Please open the following link to receive KAIA.\n\n${shareLink}`
+      `I sent ${props.amount} KAIA. Please open the following link to receive KAIA.\n\n${shareLink}`
     );
     location.href = `line://share?text=${encodedMsg}`;
   };
   const sendToTelegramFriend = () => {
     const encodedMsg = encodeURIComponent(
-      `I sent ${props.amount} KAIA.Please open the following link to receive KAIA.\n\n${shareLink}`
+      `I sent ${props.amount} KAIA. Please open the following link to receive KAIA.\n\n${shareLink}`
     );
     location.href = `tg://msg?text=${encodedMsg}`;
   };
