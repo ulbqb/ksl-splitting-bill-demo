@@ -1,7 +1,7 @@
 "use client";
 import { Web3 } from "web3";
 import { useSearchParams } from "next/navigation";
-import { Suspense, Dispatch, SetStateAction, useState } from "react";
+import { Suspense, Dispatch, SetStateAction, useState, useEffect } from "react";
 import base64url from "base64url";
 
 interface PrepareProps {
@@ -29,16 +29,20 @@ function Prepare(props: PrepareProps) {
   );
 }
 
-const Form = (props: PrepareProps) => {
+function Form(props: PrepareProps) {
   const searchParams = useSearchParams();
   const amount = searchParams.get("amount") || "0";
-  props.setAmount(amount);
 
   // WORK-AROUND: see https://github.com/ulbqb/ksl-splitting-bill-demo/pull/4
   const delegatedFee = 0.001;
   const plusFee = `${+amount + delegatedFee}`;
 
   const web3 = new Web3();
+
+  useEffect(() => {
+    props.setAmount(amount);
+  }, []);
+
   const prepareShareLink = async () => {
     try {
       const account = web3.eth.accounts.create();
@@ -94,7 +98,7 @@ const Form = (props: PrepareProps) => {
       </button>
     </>
   );
-};
+}
 
 interface GeneratedProps {
   amount: string;
@@ -141,10 +145,10 @@ function Generated(props: GeneratedProps) {
       <div></div>
       <div></div>
       <h1 className="text-2xl font-bold">KAIA Transfer Link</h1>
-      <h1 className="w-64 text-base font-medium truncate text-white/75">
+      <h1 className="w-64 text-base font-medium truncate text-gray-200 border-0 border-b-2 border-gray-500">
         {shareLink}
       </h1>
-      <div>
+      <div className="flex flex-col justify-between">
         <button
           type="button"
           className="w-64 h-14 bg-line text-white text-bg leading-6 font-medium py-2 px-3 rounded-lg inline-flex items-center mb-5"
@@ -223,7 +227,7 @@ export default function Home() {
   const [amount, setAmount] = useState("0");
   const [privateKey, setPrivateKey] = useState("");
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="flex min-h-screen flex-col items-center justify-between p-12">
       {pageState === "prepare" && (
         <Prepare
           setPageState={setPageState}
